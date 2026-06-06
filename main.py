@@ -9,8 +9,9 @@ import string
 # ========================
 # CONFIGURAÇÕES
 # ========================
-TOKEN = "SEU_TOKEN_AQUI"  # Substitua pelo token do seu bot
-ADMIN_IDS = [123456789]   # Substitua pelo seu ID do Discord
+# Usando variáveis de ambiente para segurança no deploy
+TOKEN = os.getenv("DISCORD_TOKEN")
+ADMIN_IDS = [1067932396814614598] # ID fornecido pelo usuário
 
 PRECOS = {
     "1dia": 10,
@@ -333,4 +334,7 @@ async def on_ready():
     print(f"✅ Bot online como {bot.user}")
     print(f"📡 Comandos sincronizados!")
 
-bot.run(TOKEN)
+if TOKEN:
+    bot.run(TOKEN)
+else:
+    print("❌ Erro: DISCORD_TOKEN não configurado nas variáveis de ambiente.")
